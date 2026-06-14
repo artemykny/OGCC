@@ -29,11 +29,6 @@ export const CaptchaCheckbox = forwardRef<HTMLButtonElement, CaptchaCheckboxProp
         <CaptchaBrand aria-label="RealCaptcha Privacy Terms">
           <BrandBox aria-hidden="true">RC</BrandBox>
           <BrandName>RealCaptcha</BrandName>
-          <BrandLinks>
-            <BrandLink href="#">Privacy</BrandLink>
-            <span aria-hidden="true"> - </span>
-            <BrandLink href="#">Terms</BrandLink>
-          </BrandLinks>
         </CaptchaBrand>
       </CaptchaBox>
     );
@@ -107,24 +102,4 @@ const BrandBox = styled.div`
 const BrandName = styled.div`
   font-size: 10px;
   line-height: 1.15;
-`;
-
-const BrandLinks = styled.div`
-  margin-top: 3px;
-  font-size: 9px;
-  line-height: 1;
-`;
-
-const BrandLink = styled.a`
-  color: inherit;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &:focus-visible {
-    outline: 1px solid #1a73e8;
-    outline-offset: 1px;
-  }
 `;
