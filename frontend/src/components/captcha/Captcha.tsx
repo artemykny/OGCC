@@ -2,23 +2,27 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { CaptchaCheckbox } from "./CaptchaCheckbox";
 import { CaptchaLayout } from "./CaptchaLayout";
 import { ChallengePopup } from "./ChallengePopup";
-import { challenges, getNextChallengeIndex } from "./challenges";
-import type { CaptchaStatus } from "./types";
+import { getNextChallengeIndex, challenges } from "./challenges";
+import type { CaptchaChallenge, CaptchaResult, CaptchaStatus } from "./types";
 
 const challengeCloseAnimationDuration = 240;
 
-export function Captcha() {
+type CaptchaProps = {
+  challenge?: CaptchaChallenge;
+  onComplete?: (result: CaptchaResult) => void;
+};
+
+export function Captcha({ challenge, onComplete }: CaptchaProps) {
   const popupRef = useRef<HTMLElement | null>(null);
   const checkboxButtonRef = useRef<HTMLButtonElement | null>(null);
   const verificationTimerRef = useRef<number | null>(null);
   const closeTimerRef = useRef<number | null>(null);
   const [challengeIndex, setChallengeIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState("");
   const [status, setStatus] = useState<CaptchaStatus>("idle");
   const [isChallengeOpen, setIsChallengeOpen] = useState(false);
   const [isChallengeClosing, setIsChallengeClosing] = useState(false);
 
-  const challenge = challenges[challengeIndex];
+  const activeChallenge = challenge ?? challenges[challengeIndex];
 
   const closeChallenge = useCallback(() => {
     if (!isChallengeOpen || isChallengeClosing) {
@@ -90,39 +94,27 @@ export function Captcha() {
       closeTimerRef.current = null;
     }
 
-    setSelectedAnswer("");
     setStatus("idle");
     setIsChallengeClosing(false);
     setIsChallengeOpen(true);
   }
 
-  function refreshChallenge() {
-    setChallengeIndex((currentIndex) => getNextChallengeIndex(currentIndex));
-    setSelectedAnswer("");
-    setStatus("idle");
-  }
-
-  function selectAnswer(answer: string) {
-    setSelectedAnswer(answer);
-    setStatus("idle");
-  }
-
-  function verifyAnswer() {
-    if (!selectedAnswer) {
-      return;
-    }
-
+  function completeChallenge(result: CaptchaResult) {
     closeChallenge();
     setStatus("loading");
+    onComplete?.(result);
 
     if (verificationTimerRef.current !== null) {
       window.clearTimeout(verificationTimerRef.current);
     }
 
     verificationTimerRef.current = window.setTimeout(() => {
-      setStatus(
-        selectedAnswer === challenge.correctAnswer ? "success" : "fail",
-      );
+      setStatus(result.status === "accepted" ? "success" : "fail");
+
+      if (!challenge) {
+        setChallengeIndex((currentIndex) => getNextChallengeIndex(currentIndex));
+      }
+
       verificationTimerRef.current = null;
     }, 400);
   }
@@ -140,12 +132,9 @@ export function Captcha() {
         <ChallengePopup
           ref={popupRef}
           isClosing={isChallengeClosing}
-          challenge={challenge}
-          selectedAnswer={selectedAnswer}
-          onAnswerChange={selectAnswer}
-          onClose={closeChallenge}
-          onRefresh={refreshChallenge}
-          onVerify={verifyAnswer}
+          challenge={activeChallenge}
+          onCancel={closeChallenge}
+          onComplete={completeChallenge}
         />
       )}
     </CaptchaLayout>

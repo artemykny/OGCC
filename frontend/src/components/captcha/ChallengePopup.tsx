@@ -1,40 +1,18 @@
-import { Headphones, Info, RefreshCw } from "lucide-react";
-import {
-  forwardRef,
-  useCallback,
-  useEffect,
-  useId,
-  useRef,
-  type KeyboardEvent,
-} from "react";
+import { forwardRef, useCallback, useEffect, useRef, type KeyboardEvent } from "react";
 import styled from "styled-components";
-import type { Challenge } from "./types";
+import type { CaptchaChallenge, CaptchaResult } from "./types";
 
 type ChallengePopupProps = {
   isClosing: boolean;
-  challenge: Challenge;
-  selectedAnswer: string;
-  onAnswerChange: (answer: string) => void;
-  onClose: () => void;
-  onRefresh: () => void;
-  onVerify: () => void;
+  challenge: CaptchaChallenge;
+  onCancel: () => void;
+  onComplete: (result: CaptchaResult) => void;
 };
 
 export const ChallengePopup = forwardRef<HTMLElement, ChallengePopupProps>(
-  function ChallengePopup(
-    {
-      isClosing,
-      challenge,
-      selectedAnswer,
-      onAnswerChange,
-      onClose,
-      onRefresh,
-      onVerify,
-    },
-    ref,
-  ) {
+  function ChallengePopup({ isClosing, challenge, onCancel, onComplete }, ref) {
     const popupRef = useRef<HTMLElement | null>(null);
-    const legendId = useId();
+    const ChallengePopupContent = challenge.popup;
 
     const setPopupRef = useCallback(
       (node: HTMLElement | null) => {
@@ -59,7 +37,7 @@ export const ChallengePopup = forwardRef<HTMLElement, ChallengePopupProps>(
     function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
       if (event.key === "Escape") {
         event.preventDefault();
-        onClose();
+        onCancel();
         return;
       }
 
@@ -96,54 +74,11 @@ export const ChallengePopup = forwardRef<HTMLElement, ChallengePopupProps>(
         ref={setPopupRef}
         role="dialog"
         aria-modal="true"
-        aria-label="Captcha security question"
+        aria-label="Captcha security challenge"
         tabIndex={-1}
         onKeyDown={handleKeyDown}
       >
-        <ChallengePrompt>
-          <PromptSmall>Select the correct answer</PromptSmall>
-          <PromptMain id={legendId}>{challenge.prompt}</PromptMain>
-          <PromptSmall>Choose one option below</PromptSmall>
-        </ChallengePrompt>
-
-        <AnswerGrid aria-labelledby={legendId}>
-          <VisuallyHiddenLegend>{challenge.prompt}</VisuallyHiddenLegend>
-          {challenge.answers.map((answer) => (
-            <AnswerOption key={answer} $checked={selectedAnswer === answer}>
-              <input
-                type="radio"
-                name="captcha-answer"
-                value={answer}
-                checked={selectedAnswer === answer}
-                onChange={() => onAnswerChange(answer)}
-              />
-              <span>{answer}</span>
-            </AnswerOption>
-          ))}
-        </AnswerGrid>
-
-        <ChallengeFooter>
-          <FooterIconButton
-            type="button"
-            onClick={onRefresh}
-            aria-label="Get a new challenge"
-          >
-            <RefreshCw aria-hidden="true" />
-          </FooterIconButton>
-          <FooterIconButton type="button" tabIndex={-1} aria-hidden="true">
-            <Headphones />
-          </FooterIconButton>
-          <FooterIconButton type="button" tabIndex={-1} aria-hidden="true">
-            <Info />
-          </FooterIconButton>
-          <VerifyButton
-            type="button"
-            disabled={!selectedAnswer}
-            onClick={onVerify}
-          >
-            VERIFY
-          </VerifyButton>
-        </ChallengeFooter>
+        <ChallengePopupContent onCancel={onCancel} onComplete={onComplete} />
       </Popup>
     );
   },
@@ -173,7 +108,7 @@ const Popup = styled.section<{ $isClosing: boolean }>`
   left: 56px;
   transform: translateY(-50%);
   z-index: 10;
-  width: min(320px, calc(100vw - 32px));
+  width: min(340px, calc(100vw - 32px));
   border: 1px solid #c8c8c8;
   border-radius: 2px;
   background: #ffffff;
@@ -283,118 +218,5 @@ const Popup = styled.section<{ $isClosing: boolean }>`
         transform: translateX(-50%);
       }
     }
-  }
-`;
-
-const ChallengePrompt = styled.div`
-  min-height: 104px;
-  background: #4a90e2;
-  color: #ffffff;
-  padding: 18px 20px;
-`;
-
-const PromptSmall = styled.div`
-  font-size: 15px;
-  line-height: 1.25;
-`;
-
-const PromptMain = styled.div`
-  margin: 4px 0;
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.12;
-`;
-
-const AnswerGrid = styled.fieldset`
-  display: grid;
-  gap: 8px;
-  margin-top: 8px;
-  border: 0;
-  padding: 12px;
-  background: #ffffff;
-`;
-
-const VisuallyHiddenLegend = styled.legend`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-`;
-
-const AnswerOption = styled.label<{ $checked: boolean }>`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  border: 1px solid ${({ $checked }) => ($checked ? "#4a90e2" : "#dadce0")};
-  border-radius: 2px;
-  background: ${({ $checked }) => ($checked ? "#eef4fe" : "#ffffff")};
-  cursor: pointer;
-  font-size: 15px;
-  padding: 8px 10px;
-
-  input {
-    accent-color: #4a90e2;
-    margin: 0;
-  }
-
-  span {
-    overflow-wrap: anywhere;
-  }
-`;
-
-const ChallengeFooter = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 64px;
-  margin-top: 8px;
-  border-top: 1px solid #dadce0;
-  padding: 10px 4px 0;
-`;
-
-const FooterIconButton = styled.button`
-  appearance: none;
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 0;
-  background: transparent;
-  color: #5f6368;
-  cursor: pointer;
-  padding: 0;
-
-  svg {
-    width: 27px;
-    height: 27px;
-    stroke-width: 2.5;
-  }
-`;
-
-const VerifyButton = styled.button`
-  appearance: none;
-  min-width: 94px;
-  margin-left: auto;
-  border: 0;
-  border-radius: 2px;
-  background: #4a90e2;
-  color: #ffffff;
-  cursor: pointer;
-  font: inherit;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 14px 18px;
-
-  &:focus-visible {
-    outline: 2px solid #174ea6;
-    outline-offset: 2px;
-  }
-
-  &:disabled {
-    background: #a8c7fa;
-    cursor: not-allowed;
   }
 `;
