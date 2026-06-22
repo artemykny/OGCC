@@ -3,7 +3,9 @@ import type { ReactNode } from "react";
 import styled from "styled-components";
 
 type ChallengePanelProps = {
+  promptLabel: string;
   prompt: string;
+  promptHint: string;
   submitDisabled: boolean;
   children: ReactNode;
   onSubmit: () => void;
@@ -11,7 +13,9 @@ type ChallengePanelProps = {
 };
 
 export function ChallengePanel({
+  promptLabel,
   prompt,
+  promptHint,
   submitDisabled,
   children,
   onSubmit,
@@ -20,8 +24,9 @@ export function ChallengePanel({
   return (
     <>
       <ChallengePrompt>
-        <PromptSmall>Select the correct answer</PromptSmall>
+        <PromptSmall>{promptLabel}</PromptSmall>
         <PromptMain>{prompt}</PromptMain>
+        <PromptSmall>{promptHint}</PromptSmall>
       </ChallengePrompt>
 
       <ChallengeBody>{children}</ChallengeBody>
@@ -67,7 +72,7 @@ const PromptSmall = styled.div`
 `;
 
 const PromptMain = styled.div`
-  margin: 4px 0 0;
+  margin: 4px 0;
   font-size: 24px;
   font-weight: 700;
   line-height: 1.12;

@@ -7,7 +7,9 @@ export const challenges: CaptchaChallenge[] = [
     popup: (props) => (
       <SingleChoicePopup
         {...props}
+        promptLabel="Select the correct answer"
         prompt="Which shape has three sides?"
+        promptHint="Choose one option below"
         options={[
           { id: "circle", label: "Circle" },
           { id: "square", label: "Square" },

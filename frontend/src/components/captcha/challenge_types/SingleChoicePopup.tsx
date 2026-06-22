@@ -9,13 +9,17 @@ type ChoiceOption = {
 };
 
 export type SingleChoicePopupProps = CaptchaPopupProps & {
+  promptLabel: string;
   prompt: string;
+  promptHint: string;
   options: ChoiceOption[];
   correctOptionId: string;
 };
 
 export function SingleChoicePopup({
+  promptLabel,
   prompt,
+  promptHint,
   options,
   correctOptionId,
   onComplete,
@@ -34,7 +38,9 @@ export function SingleChoicePopup({
 
   return (
     <ChallengePanel
+      promptLabel={promptLabel}
       prompt={prompt}
+      promptHint={promptHint}
       submitDisabled={!selectedOptionId}
       onSubmit={submitAnswer}
       onRefresh={onRefresh}
