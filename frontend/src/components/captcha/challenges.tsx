@@ -1,4 +1,8 @@
-import { ImageChoicePopup, SingleChoicePopup } from "./challenge_types";
+import {
+  ImageChoicePopup,
+  PointSelectionPopup,
+  SingleChoicePopup,
+} from "./challenge_types";
 import type { CaptchaChallenge } from "./types";
 
 export const challenges: CaptchaChallenge[] = [
@@ -47,6 +51,19 @@ export const challenges: CaptchaChallenge[] = [
           },
         ]}
         correctOptionId="traffic-light"
+      />
+    ),
+  },
+  {
+    id: "point-selection-door-handle",
+    popup: (props) => (
+      <PointSelectionPopup
+        {...props}
+        promptLabel="Select the requested point"
+        prompt="Click the door handle"
+        promptHint="Click once on the image below"
+        imageSrc="/challenge-images/door.svg"
+        target={{ x: 0.647, y: 0.534, radius: 0.065 }}
       />
     ),
   },

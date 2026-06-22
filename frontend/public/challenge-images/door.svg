@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" role="img" aria-labelledby="title">
+  <title id="title">A front door with a handle</title>
+  <rect width="320" height="240" fill="#d7e3e8"/>
+  <path d="M0 190h320v50H0z" fill="#b8a58d"/>
+  <path d="M0 190h320v8H0z" fill="#917c67"/>
+  <path d="M74 16h172v224H74z" fill="#f4f0e7"/>
+  <path d="M87 27h146v213H87z" fill="#3f7186"/>
+  <path d="M99 40h122v188H99z" fill="#4f8499"/>
+  <path d="M111 52h98v62h-98zM111 130h98v84h-98z" fill="#6095a8"/>
+  <path d="M111 114h98v10h-98z" fill="#3c6c80"/>
+  <circle cx="207" cy="128" r="9" fill="#d7b45a" stroke="#8f712d" stroke-width="3"/>
+  <path d="M207 128h22" stroke="#c89d3e" stroke-width="7" stroke-linecap="round"/>
+  <path d="M54 232h212v8H54z" fill="#806b58"/>
+  <path d="M20 67h34v123H20zM266 52h32v138h-32z" fill="#aebfc4" opacity=".8"/>
+</svg>
