@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">Mailbox</title>
+  <rect width="240" height="240" fill="#dff0fa"/>
+  <path d="M0 190h240v50H0z" fill="#9bc07e"/>
+  <path d="M111 126h18v114h-18z" fill="#76513b"/>
+  <path d="M47 83c0-26 21-47 47-47h55c24 0 44 20 44 44v69H47z" fill="#3979af"/>
+  <path d="M149 36c24 0 44 20 44 44v69h-44z" fill="#2e6795"/>
+  <path d="M150 56h10v58h-10z" fill="#cf3f3c"/>
+  <path d="M155 56h31v19h-31z" fill="#ed514c"/>
+  <path d="M47 132h146v17H47z" fill="#25587f"/>
+</svg>

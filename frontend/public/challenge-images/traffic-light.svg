@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">Traffic light</title>
+  <rect width="240" height="240" fill="#d9edf7"/>
+  <path d="M0 194h240v46H0z" fill="#93b878"/>
+  <path d="M112 180h16v60h-16z" fill="#5f6368"/>
+  <rect x="79" y="22" width="82" height="166" rx="14" fill="#30343b"/>
+  <circle cx="120" cy="60" r="22" fill="#e64b47"/>
+  <circle cx="120" cy="105" r="22" fill="#f6c84c"/>
+  <circle cx="120" cy="150" r="22" fill="#54ad68"/>
+  <path d="M84 39l-16 10v22l16 8M156 39l16 10v22l-16 8M84 85l-16 10v22l16 8M156 85l16 10v22l-16 8" fill="#3f454e"/>
+</svg>

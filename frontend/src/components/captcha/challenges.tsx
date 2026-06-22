@@ -1,4 +1,4 @@
-import { SingleChoicePopup } from "./challenge_types";
+import { ImageChoicePopup, SingleChoicePopup } from "./challenge_types";
 import type { CaptchaChallenge } from "./types";
 
 export const challenges: CaptchaChallenge[] = [
@@ -17,6 +17,36 @@ export const challenges: CaptchaChallenge[] = [
           { id: "rectangle", label: "Rectangle" },
         ]}
         correctOptionId="triangle"
+      />
+    ),
+  },
+  {
+    id: "image-choice-traffic-light",
+    popup: (props) => (
+      <ImageChoicePopup
+        {...props}
+        promptLabel="Select the correct image"
+        prompt="Which image shows a traffic light?"
+        promptHint="Choose one image below"
+        options={[
+          {
+            id: "hydrant",
+            imageSrc: "/challenge-images/hydrant.svg",
+          },
+          {
+            id: "traffic-light",
+            imageSrc: "/challenge-images/traffic-light.svg",
+          },
+          {
+            id: "mailbox",
+            imageSrc: "/challenge-images/mailbox.svg",
+          },
+          {
+            id: "streetlamp",
+            imageSrc: "/challenge-images/streetlamp.svg",
+          },
+        ]}
+        correctOptionId="traffic-light"
       />
     ),
   },

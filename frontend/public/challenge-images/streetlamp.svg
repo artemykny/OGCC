@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="title">
+  <title id="title">Streetlamp</title>
+  <rect width="240" height="240" fill="#dcecf7"/>
+  <path d="M0 194h240v46H0z" fill="#96bb7a"/>
+  <path d="M112 83h16v137h-16z" fill="#424b56"/>
+  <path d="M92 213h56v12H92z" fill="#343b44"/>
+  <path d="M83 28h74l-9 55H92z" fill="#39424c"/>
+  <path d="M95 39h50l-7 33h-36z" fill="#ffe494"/>
+  <path d="M75 25h90v11H75zM105 15h30v13h-30z" fill="#343b44"/>
+  <circle cx="120" cy="13" r="7" fill="#343b44"/>
+</svg>
