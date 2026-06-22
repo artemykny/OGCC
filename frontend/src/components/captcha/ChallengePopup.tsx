@@ -3,6 +3,7 @@ import {
   forwardRef,
   useCallback,
   useEffect,
+  useId,
   useRef,
   type KeyboardEvent,
 } from "react";
@@ -33,6 +34,7 @@ export const ChallengePopup = forwardRef<HTMLElement, ChallengePopupProps>(
     ref,
   ) {
     const popupRef = useRef<HTMLElement | null>(null);
+    const legendId = useId();
 
     const setPopupRef = useCallback(
       (node: HTMLElement | null) => {
@@ -58,40 +60,6 @@ export const ChallengePopup = forwardRef<HTMLElement, ChallengePopupProps>(
       if (event.key === "Escape") {
         event.preventDefault();
         onClose();
-        return;
-      }
-
-      if (
-        event.key === "ArrowDown" ||
-        event.key === "ArrowRight" ||
-        event.key === "ArrowUp" ||
-        event.key === "ArrowLeft" ||
-        event.key === "Home" ||
-        event.key === "End"
-      ) {
-        event.preventDefault();
-
-        const selectedIndex = challenge.answers.indexOf(selectedAnswer);
-        const lastIndex = challenge.answers.length - 1;
-        let nextIndex = selectedIndex;
-
-        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-          nextIndex = selectedIndex === lastIndex ? 0 : selectedIndex + 1;
-        }
-
-        if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-          nextIndex = selectedIndex <= 0 ? lastIndex : selectedIndex - 1;
-        }
-
-        if (event.key === "Home") {
-          nextIndex = 0;
-        }
-
-        if (event.key === "End") {
-          nextIndex = lastIndex;
-        }
-
-        onAnswerChange(challenge.answers[nextIndex]);
         return;
       }
 
@@ -134,11 +102,12 @@ export const ChallengePopup = forwardRef<HTMLElement, ChallengePopupProps>(
       >
         <ChallengePrompt>
           <PromptSmall>Select the correct answer</PromptSmall>
-          <PromptMain>{challenge.prompt}</PromptMain>
+          <PromptMain id={legendId}>{challenge.prompt}</PromptMain>
           <PromptSmall>Choose one option below</PromptSmall>
         </ChallengePrompt>
 
-        <AnswerGrid aria-label="Captcha answer choices">
+        <AnswerGrid aria-labelledby={legendId}>
+          <VisuallyHiddenLegend>{challenge.prompt}</VisuallyHiddenLegend>
           {challenge.answers.map((answer) => (
             <AnswerOption key={answer} $checked={selectedAnswer === answer}>
               <input
@@ -167,7 +136,11 @@ export const ChallengePopup = forwardRef<HTMLElement, ChallengePopupProps>(
           <FooterIconButton type="button" tabIndex={-1} aria-hidden="true">
             <Info />
           </FooterIconButton>
-          <VerifyButton type="button" onClick={onVerify}>
+          <VerifyButton
+            type="button"
+            disabled={!selectedAnswer}
+            onClick={onVerify}
+          >
             VERIFY
           </VerifyButton>
         </ChallengeFooter>
@@ -332,12 +305,22 @@ const PromptMain = styled.div`
   line-height: 1.12;
 `;
 
-const AnswerGrid = styled.div`
+const AnswerGrid = styled.fieldset`
   display: grid;
   gap: 8px;
   margin-top: 8px;
+  border: 0;
   padding: 12px;
   background: #ffffff;
+`;
+
+const VisuallyHiddenLegend = styled.legend`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 `;
 
 const AnswerOption = styled.label<{ $checked: boolean }>`
@@ -408,5 +391,10 @@ const VerifyButton = styled.button`
   &:focus-visible {
     outline: 2px solid #174ea6;
     outline-offset: 2px;
+  }
+
+  &:disabled {
+    background: #a8c7fa;
+    cursor: not-allowed;
   }
 `;

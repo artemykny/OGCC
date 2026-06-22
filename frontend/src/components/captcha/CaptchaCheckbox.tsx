@@ -11,6 +11,8 @@ type CaptchaCheckboxProps = {
 
 export const CaptchaCheckbox = forwardRef<HTMLButtonElement, CaptchaCheckboxProps>(
   function CaptchaCheckbox({ isOpen, status, onOpen }, ref) {
+    const statusLabel = getCaptchaStatusLabel(status);
+
     return (
       <CaptchaBox aria-label="Captcha verification">
         <CheckboxButton
@@ -19,10 +21,12 @@ export const CaptchaCheckbox = forwardRef<HTMLButtonElement, CaptchaCheckboxProp
           onClick={onOpen}
           aria-expanded={isOpen}
           aria-haspopup="dialog"
-          aria-label="Open captcha challenge"
+          aria-label={statusLabel}
+          aria-busy={status === "loading"}
         >
           <StatusIndicator status={status} />
         </CheckboxButton>
+        <LiveStatus aria-live="polite">{statusLabel}</LiveStatus>
 
         <CaptchaText>I'm not a robot</CaptchaText>
 
@@ -34,6 +38,22 @@ export const CaptchaCheckbox = forwardRef<HTMLButtonElement, CaptchaCheckboxProp
     );
   },
 );
+
+function getCaptchaStatusLabel(status: CaptchaStatus) {
+  if (status === "loading") {
+    return "Verifying captcha answer";
+  }
+
+  if (status === "success") {
+    return "Captcha verification successful";
+  }
+
+  if (status === "fail") {
+    return "Captcha verification failed";
+  }
+
+  return "Open captcha challenge";
+}
 
 const CaptchaBox = styled.section`
   box-sizing: border-box;
@@ -63,6 +83,15 @@ const CheckboxButton = styled.button`
   &:focus-visible {
     outline: 0;
   }
+`;
+
+const LiveStatus = styled.span`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 `;
 
 const CaptchaText = styled.div`

@@ -108,6 +108,10 @@ export function Captcha() {
   }
 
   function verifyAnswer() {
+    if (!selectedAnswer) {
+      return;
+    }
+
     closeChallenge();
     setStatus("loading");
 
