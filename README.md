@@ -22,12 +22,6 @@ An image challenge where the user clicks or taps a specific point.
 
 Example: "Click the door handle."
 
-### Drag item to target
-
-A challenge where the user drags an item onto a target.
-
-Example: "Drag the apple into the fruit basket."
-
 ### Ordering
 
 A challenge where the user arranges text or image items in order.

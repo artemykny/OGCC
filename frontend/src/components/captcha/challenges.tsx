@@ -1,5 +1,6 @@
 import {
   ImageChoicePopup,
+  OrderingPopup,
   PointSelectionPopup,
   SingleChoicePopup,
 } from "./challenge_types";
@@ -64,6 +65,24 @@ export const challenges: CaptchaChallenge[] = [
         promptHint="Click once on the image below"
         imageSrc="/challenge-images/door.svg"
         target={{ x: 0.647, y: 0.534, radius: 0.065 }}
+      />
+    ),
+  },
+  {
+    id: "ordering-animal-size",
+    popup: (props) => (
+      <OrderingPopup
+        {...props}
+        promptLabel="Put the items in order"
+        prompt="Smallest animal to largest"
+        promptHint="Drag items or use the arrow buttons"
+        options={[
+          { id: "horse", label: "Horse" },
+          { id: "ant", label: "Ant" },
+          { id: "elephant", label: "Elephant" },
+          { id: "cat", label: "Cat" },
+        ]}
+        correctOrder={["ant", "cat", "horse", "elephant"]}
       />
     ),
   },
