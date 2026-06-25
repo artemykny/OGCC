@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { CaptchaCheckbox } from "./CaptchaCheckbox";
 import { CaptchaLayout } from "./CaptchaLayout";
 import { ChallengePopup } from "./ChallengePopup";
-import { challenges as defaultChallenges } from "./challenges";
+import { challenges as defaultChallenges } from "../challenges";
 import type {
   CaptchaChallenge,
   CaptchaResult,

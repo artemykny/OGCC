@@ -2,127 +2,127 @@
 
 ## Single Choice Questions
 
-- Which phrase means the vibe is cooked?
+- The plan failed before it even started. What does chat say?
   - We are so back
   - It's giving
   - Bro is cooked
   - Let him cook
-- What does "no cap" mean?
+- Someone swears the story is true.
   - No hat detected
   - I'm not lying
   - Stop talking
   - The video ended
-- Which reply means "I understood nothing, but I support the bit"?
+- Someone sends nonsense, but the energy is correct. Reply with:
   - Real
   - No cap
   - Skill issue
   - Bro sold
-- Which word correctly describes someone with effortless charm?
+- Someone wins everyone over without trying. They have:
   - Rizz
   - Sigma
   - NPC
   - Lag
-- Choose the correct response to "chat, is this real?"
+- The group chat needs proof the timeline is still normal.
   - Real
   - Fanum tax
   - Respawn
   - Side quest
-- Which one means the situation is embarrassing beyond repair?
+- Someone tries to look cool and the room goes silent.
   - Based
   - Cringe
   - Locked in
   - Ate
-- Select the option with maximum "main character" confidence.
+- The selfie is flawless and the caption knows it.
   - I fear I ate
   - Lowkey maybe
   - Bro might be onto something
   - Negative aura
-- Which phrase means someone did something impressive?
+- Someone absolutely destroys the presentation.
   - They ate
   - They lagged
   - They spawned
   - They respawned
-- What should you say when someone has a terrible idea and everyone should stop them?
+- Someone is pitching an idea so bad the room must intervene.
   - Never let bro cook again
   - Let him cook
   - Common W
   - Big aura
-- Which answer is most likely to pass the vibe check?
+- Everything is going weirdly well. Pick the safest approval.
   - W
-  - Fax, no printer
+  - Common W
   - Big aura
   - All of the above
-- What is the correct meaning of "mid"?
+- The movie was not terrible, not great, just painfully okay.
   - Peak
   - Suspiciously average
   - Final boss
   - Lowkey fire
-- Which phrase belongs in a dramatic reaction to a minor inconvenience?
+- Your charger is across the room and the drama must be immediate.
   - I'm cooked
   - New side quest
   - W spawn
   - Common loot
-- Which reply means "I agree" with the fewest letters?
+- You agree, but typing three letters would be doing too much.
   - Fr
   - NPC
   - Mid
   - 67
-- Which option has the strongest "algorithm found me at 2 AM" energy?
+- Pick the video title most likely to appear after one doomed scroll.
   - Skibidi toilet lore breakdown
   - Aura farming tutorial
   - Six seven explained poorly
   - Mewing tutorial iceberg
-- Which word describes someone behaving like a background character?
+- Someone is standing there like default game dialogue.
   - NPC
   - Rizzler
   - Final boss
   - Main character
-- What is the proper response when someone says "I have negative aura"?
+- Someone admits their social score is below zero.
   - You're cooked
   - Common W
   - Let him cook
   - Big aura
-- Which one means "this person has charisma"?
+- Someone walks in and the whole lunch table pays attention.
   - They have rizz
   - They have lag
   - They have homework
   - They have no aura
-- Select the phrase that means something is unexpectedly good.
+- The random gas station snack is somehow elite.
   - Lowkey fire
   - Highkey mid
   - Certified NPC
   - Common L
-- Which response means "I saw something absurd and accept it"?
+- The video makes no sense, but your soul accepts it.
   - Real
   - Cap
   - Ratio
   - Touch grass
-- What does "locked in" mean?
+- The test starts in ten minutes and your brain finally loads.
   - Focused
   - Logged out
   - Muted
   - Lost in settings
-- Which choice has the most suspiciously confident alpha energy?
+- Someone misses once, nods, and claims it was strategy.
   - Sigma behavior
   - NPC behavior
   - Tutorial behavior
   - Side quest behavior
-- Which reply means "that was a win"?
+- The vending machine drops two snacks for one payment.
   - W
   - L
   - Mid
   - Cap
-- Which phrase means someone failed in public?
+- Someone had one job in front of everyone and missed.
   - Bro sold
   - Bro ate
   - Bro clutched
   - Bro locked in
-- Choose the phrase that means "please continue, this is entertaining."
+- The idea is risky, but the group chat wants to see where it goes.
   - Let him cook
   - Stop the cap
   - Skill issue
   - Touch grass
-- Which message has the strongest "group chat judge has spoken" energy?
+- Someone denies the evidence while the screenshot is already posted.
   - Chat, rate the fit
   - Bro thinks he's him
   - Be so for real
@@ -134,7 +134,7 @@
 - Choose the outfit that is giving "first day of school fit check."
 - Which image looks like it would be captioned "bro is NOT locked in"?
 - Select the meal that becomes gourmet when eaten after midnight.
-- Choose the phone battery level where bargaining with reality begins.
+- Choose the phone battery level where bargaining with the universe begins.
 - Which thumbnail would autoplay into brainrot?
 - Select the face that says "front camera opened by accident."
 - Choose the screenshot that belongs in the group chat immediately.
@@ -156,7 +156,7 @@
 
 - Tap the exact part of the screen where the skip ad button will appear.
 - Click the record button before the moment loses aura.
-- Tap the one reaction that means "real" without adding context.
+- Tap the reaction you send when the clip makes no sense but you accept it.
 - Click the spot where the hidden like button appears after the UI changes again.
 - Tap the volume slider position that avoids jump-scare audio.
 - Click the exact frame where the edit becomes funny.
