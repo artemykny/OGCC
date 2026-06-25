@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from "react";
 import { createGlobalStyle, styled } from "styled-components";
+import { Logo } from "./Logo";
 
 const footerGroups = [
   {
@@ -55,7 +56,9 @@ export function AppShell({ children }: PropsWithChildren) {
       <Shell>
         <Header aria-label="Site header">
           <Brand href="/" aria-label="OGCC home">
-            <BrandMark aria-hidden="true">OG</BrandMark>
+            <BrandMark>
+              <Logo />
+            </BrandMark>
             <span>
               <BrandName>OGCC</BrandName>
               <BrandSubtitle>Identity Assurance</BrandSubtitle>
@@ -187,12 +190,12 @@ const BrandMark = styled.span`
   width: 34px;
   height: 34px;
   place-items: center;
-  border: 1px solid #aab4c0;
-  border-radius: 4px;
-  background: #243447;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
+
+  svg {
+    display: block;
+    width: 34px;
+    height: 34px;
+  }
 `;
 
 const BrandName = styled.span`
