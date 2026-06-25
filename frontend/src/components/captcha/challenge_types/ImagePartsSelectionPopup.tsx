@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import styled from "styled-components";
-import type { CaptchaPopupProps, CaptchaResult } from "../types";
+import type { CaptchaPopupProps, ChallengeResult } from "../types";
 import { ChallengePanel } from "./ChallengePanel";
 
 export type ImagePartsSelectionPopupProps = CaptchaPopupProps & {
@@ -58,7 +58,7 @@ export function ImagePartsSelectionPopup({
   }
 
   function submitAnswer() {
-    onComplete(scoreResult(hasExactSelection(selectedPartIds, correctPartIds)));
+    onComplete(scoreResult(selectedPartIds, correctPartIds, parts.length));
   }
 
   return (
@@ -93,21 +93,26 @@ export function ImagePartsSelectionPopup({
   );
 }
 
-function hasExactSelection(
+function scoreResult(
   selectedPartIds: Set<string>,
   correctPartIds: string[],
-) {
-  if (selectedPartIds.size !== correctPartIds.length) {
-    return false;
-  }
+  totalPartCount: number,
+): ChallengeResult {
+  const correctPartIdSet = new Set(correctPartIds);
+  const selectedCorrectCount = correctPartIds.filter((partId) =>
+    selectedPartIds.has(partId),
+  ).length;
+  const selectedIncorrectCount = Array.from(selectedPartIds).filter(
+    (partId) => !correctPartIdSet.has(partId),
+  ).length;
+  const incorrectPartCount = totalPartCount - correctPartIds.length;
+  const positiveScore = selectedCorrectCount / correctPartIds.length;
+  const penaltyScore = incorrectPartCount > 0
+    ? selectedIncorrectCount / incorrectPartCount
+    : selectedIncorrectCount;
 
-  return correctPartIds.every((partId) => selectedPartIds.has(partId));
-}
-
-function scoreResult(isAccepted: boolean): CaptchaResult {
   return {
-    status: isAccepted ? "accepted" : "rejected",
-    humanPercentage: isAccepted ? 0.96 : 0.21,
+    score: Math.max(-1, Math.min(1, positiveScore - penaltyScore)),
   };
 }
 

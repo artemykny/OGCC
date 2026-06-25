@@ -44,11 +44,15 @@ function getCaptchaStatusLabel(status: CaptchaStatus) {
     return "Verifying captcha answer";
   }
 
-  if (status === "success") {
+  if (status === "passed") {
     return "Captcha verification successful";
   }
 
-  if (status === "fail") {
+  if (status === "retry") {
+    return "Captcha verification inconclusive, try again";
+  }
+
+  if (status === "failed") {
     return "Captcha verification failed";
   }
 

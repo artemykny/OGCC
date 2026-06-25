@@ -1,7 +1,7 @@
 import { Check } from "lucide-react";
 import { useId, useState } from "react";
 import styled from "styled-components";
-import type { CaptchaPopupProps, CaptchaResult } from "../types";
+import type { CaptchaPopupProps, ChallengeResult } from "../types";
 import { ChallengePanel } from "./ChallengePanel";
 
 type ImageChoiceOption = {
@@ -79,10 +79,9 @@ function formatOptionId(optionId: string) {
   return optionId.replaceAll("-", " ");
 }
 
-function scoreResult(isAccepted: boolean): CaptchaResult {
+function scoreResult(isAccepted: boolean): ChallengeResult {
   return {
-    status: isAccepted ? "accepted" : "rejected",
-    humanPercentage: isAccepted ? 0.96 : 0.22,
+    score: isAccepted ? 1 : -1,
   };
 }
 

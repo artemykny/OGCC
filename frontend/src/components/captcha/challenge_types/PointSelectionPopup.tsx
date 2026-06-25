@@ -1,6 +1,6 @@
 import { useState, type MouseEvent } from "react";
 import styled from "styled-components";
-import type { CaptchaPopupProps, CaptchaResult } from "../types";
+import type { CaptchaPopupProps, ChallengeResult } from "../types";
 import { ChallengePanel } from "./ChallengePanel";
 
 type Point = {
@@ -46,7 +46,7 @@ export function PointSelectionPopup({
       selectedPoint.y - target.y,
     );
 
-    onComplete(scoreResult(distance <= target.radius));
+    onComplete(scoreResult(distance, target.radius));
   }
 
   return (
@@ -78,10 +78,9 @@ export function PointSelectionPopup({
   );
 }
 
-function scoreResult(isAccepted: boolean): CaptchaResult {
+function scoreResult(distance: number, radius: number): ChallengeResult {
   return {
-    status: isAccepted ? "accepted" : "rejected",
-    humanPercentage: isAccepted ? 0.97 : 0.19,
+    score: Math.max(-1, Math.min(1, 1 - distance / radius)),
   };
 }
 

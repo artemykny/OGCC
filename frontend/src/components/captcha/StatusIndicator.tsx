@@ -15,17 +15,29 @@ export function StatusIndicator({ status }: StatusIndicatorProps) {
     return <Spinner aria-label="Verifying" role="img" />;
   }
 
-  const Icon = status === "success" ? Check : X;
+  const Icon = status === "passed" ? Check : X;
 
   return (
     <IconWrap
       $status={status}
-      aria-label={status === "success" ? "Verification successful" : "Verification failed"}
+      aria-label={getIconLabel(status)}
       role="img"
     >
       <Icon aria-hidden="true" />
     </IconWrap>
   );
+}
+
+function getIconLabel(status: Exclude<CaptchaStatus, "idle" | "loading">) {
+  if (status === "passed") {
+    return "Verification successful";
+  }
+
+  if (status === "retry") {
+    return "Verification inconclusive";
+  }
+
+  return "Verification failed";
 }
 
 const EmptyCheckbox = styled.span`
@@ -61,13 +73,13 @@ const Spinner = styled.span`
   }
 `;
 
-const IconWrap = styled.span<{ $status: Extract<CaptchaStatus, "success" | "fail"> }>`
+const IconWrap = styled.span<{ $status: Extract<CaptchaStatus, "passed" | "failed" | "retry"> }>`
   display: grid;
   place-items: center;
   width: 28px;
   height: 28px;
   flex: 0 0 auto;
-  color: ${({ $status }) => ($status === "success" ? "#188038" : "#d93025")};
+  color: ${({ $status }) => ($status === "passed" ? "#188038" : "#d93025")};
   animation: status-pop 220ms cubic-bezier(0.2, 0, 0, 1);
 
   svg {

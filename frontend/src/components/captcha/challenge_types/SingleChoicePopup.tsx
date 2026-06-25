@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import styled from "styled-components";
-import type { CaptchaPopupProps, CaptchaResult } from "../types";
+import type { CaptchaPopupProps, ChallengeResult } from "../types";
 import { ChallengePanel } from "./ChallengePanel";
 
 type ChoiceOption = {
@@ -67,10 +67,9 @@ export function SingleChoicePopup({
   );
 }
 
-function scoreResult(isAccepted: boolean): CaptchaResult {
+function scoreResult(isAccepted: boolean): ChallengeResult {
   return {
-    status: isAccepted ? "accepted" : "rejected",
-    humanPercentage: isAccepted ? 0.94 : 0.27,
+    score: isAccepted ? 1 : -1,
   };
 }
 

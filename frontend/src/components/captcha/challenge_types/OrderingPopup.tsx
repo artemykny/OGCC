@@ -18,7 +18,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { GripVertical } from "lucide-react";
 import { useState } from "react";
 import styled from "styled-components";
-import type { CaptchaPopupProps, CaptchaResult } from "../types";
+import type { CaptchaPopupProps, ChallengeResult } from "../types";
 import { ChallengePanel } from "./ChallengePanel";
 
 type OrderingOption = {
@@ -66,11 +66,8 @@ export function OrderingPopup({
 
   function submitAnswer() {
     const selectedOrder = orderedOptions.map((option) => option.id);
-    const isAccepted = selectedOrder.every(
-      (optionId, index) => optionId === correctOrder[index],
-    );
 
-    onComplete(scoreResult(isAccepted));
+    onComplete(scoreResult(selectedOrder, correctOrder));
   }
 
   return (
@@ -147,10 +144,16 @@ function SortableOrderingItem({
   );
 }
 
-function scoreResult(isAccepted: boolean): CaptchaResult {
+function scoreResult(
+  selectedOrder: string[],
+  correctOrder: string[],
+): ChallengeResult {
+  const correctPositionCount = selectedOrder.filter(
+    (optionId, index) => optionId === correctOrder[index],
+  ).length;
+
   return {
-    status: isAccepted ? "accepted" : "rejected",
-    humanPercentage: isAccepted ? 0.95 : 0.24,
+    score: (correctPositionCount / correctOrder.length) * 2 - 1,
   };
 }
 

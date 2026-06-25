@@ -110,7 +110,3 @@ export const challenges: CaptchaChallenge[] = [
     ),
   },
 ];
-
-export function getNextChallengeIndex(currentIndex: number) {
-  return (currentIndex + 1) % challenges.length;
-}

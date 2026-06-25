@@ -1,12 +1,16 @@
 import type { ComponentType } from "react";
 
+export type ChallengeResult = {
+  score: number;
+};
+
 export type CaptchaResult = {
-  status: "accepted" | "rejected";
-  humanPercentage: number;
+  status: "accepted" | "rejected" | "retry";
+  score: number;
 };
 
 export type CaptchaPopupProps = {
-  onComplete: (result: CaptchaResult) => void;
+  onComplete: (result: ChallengeResult) => void;
   onCancel?: () => void;
   onRefresh: () => void;
 };
@@ -16,4 +20,4 @@ export type CaptchaChallenge = {
   popup: ComponentType<CaptchaPopupProps>;
 };
 
-export type CaptchaStatus = "idle" | "loading" | "success" | "fail";
+export type CaptchaStatus = "idle" | "loading" | "passed" | "failed" | "retry";

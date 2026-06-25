@@ -1,13 +1,13 @@
 import { forwardRef, useCallback, useEffect, useRef, type KeyboardEvent } from "react";
 import styled from "styled-components";
-import type { CaptchaChallenge, CaptchaResult } from "./types";
+import type { CaptchaChallenge, ChallengeResult } from "./types";
 
 type ChallengePopupProps = {
   isClosing: boolean;
   challenge: CaptchaChallenge;
   challengeRevision: number;
   onCancel: () => void;
-  onComplete: (result: CaptchaResult) => void;
+  onComplete: (result: ChallengeResult) => void;
   onRefresh: () => void;
 };
 
